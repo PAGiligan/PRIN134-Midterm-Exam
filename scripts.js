@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const firstBtn = document.querySelector('#btn-select-first');
-    const nextBtn = document.querySelector('#btn-select-next');
     const prevBtn = document.querySelector('#btn-select-previous');
     const siteLogo = document.querySelector('.banner-content');
     const cards = document.querySelectorAll('.card');
@@ -38,6 +36,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const lastBtn = document.querySelector('#btn-select-last');
     lastBtn.addEventListener('click', function() {
         currentHighlightedIndex = cards.length - 1;
+        highlightCard(currentHighlightedIndex);
+    });
+    
+    const firstBtn = document.querySelector('#btn-select-first');
+    firstBtn.addEventListener('click', function() {
+        currentHighlightedIndex = 0;
+        highlightCard(currentHighlightedIndex);
+    });
+    
+    const nextBtn = document.querySelector('#btn-select-next');
+    nextBtn.addEventListener('click', function() {
+        currentHighlightedIndex = (currentHighlightedIndex + 1) % cards.length;
         highlightCard(currentHighlightedIndex);
     });
 

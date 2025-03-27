@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const prevBtn = document.querySelector('#btn-select-previous');
-    const siteLogo = document.querySelector('.banner-content');
     const cards = document.querySelectorAll('.card');
     
     let currentHighlightedIndex = 0;
@@ -50,5 +48,29 @@ document.addEventListener('DOMContentLoaded', function() {
         currentHighlightedIndex = (currentHighlightedIndex + 1) % cards.length;
         highlightCard(currentHighlightedIndex);
     });
-
+    
+    const prevBtn = document.querySelector('#btn-select-previous');
+    prevBtn.addEventListener('click', function() {
+        currentHighlightedIndex = (currentHighlightedIndex - 1 + cards.length) % cards.length;
+        highlightCard(currentHighlightedIndex);
+    });
+    
+    const siteLogo = document.querySelector('.banner-content');
+    siteLogo.addEventListener('click', function() {
+        this.classList.add('animate__animated', 'animate__zoomInDown');
+        
+        this.addEventListener('animationend', function() {
+            this.classList.remove('animate__animated', 'animate__zoomInDown');
+        }, { once: true });
+    });
+    
+    function highlightCard(index) {
+        cards.forEach(card => {
+            card.classList.remove('card-selected', 'active');
+        });
+        
+        cards[index].classList.add('card-selected', 'active');
+        
+        currentHighlightedIndex = index;
+    }
 });

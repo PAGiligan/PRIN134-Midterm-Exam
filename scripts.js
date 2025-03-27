@@ -1,7 +1,4 @@
 document.addEventListener('DOMContentLoaded', function() {
-
-    const unpetAllBtn = document.querySelector('#btn-unselect-all');
-    const lastBtn = document.querySelector('#btn-select-last');
     const firstBtn = document.querySelector('#btn-select-first');
     const nextBtn = document.querySelector('#btn-select-next');
     const prevBtn = document.querySelector('#btn-select-previous');
@@ -28,5 +25,20 @@ document.addEventListener('DOMContentLoaded', function() {
             icon.classList.add('fa-solid');
         });
     });
- 
+    
+    const unpetAllBtn = document.querySelector('#btn-unselect-all');
+    unpetAllBtn.addEventListener('click', function() {
+        petButtons.forEach(button => {
+            const icon = button.querySelector('i');
+            icon.classList.remove('fa-solid');
+            icon.classList.add('fa-regular');
+        });
+    });
+    
+    const lastBtn = document.querySelector('#btn-select-last');
+    lastBtn.addEventListener('click', function() {
+        currentHighlightedIndex = cards.length - 1;
+        highlightCard(currentHighlightedIndex);
+    });
+
 });
